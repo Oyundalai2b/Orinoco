@@ -4,31 +4,42 @@
     <meta charset="utf-8" />
     <title>Orinoco shop</title>
     <link rel="stylesheet" href="./public/css/style.css" />
+    <script src="./public/js/jquery-3.6.0.min.js"></script>
+    <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   </head>
   <body>
     <header>
       <a href="./index.html">
         <img src="./Orinoco_logo.jpg" alt="Orinoco_logo"
       /></a>
-      <a href="#" target="_blank"></a>
-      <i class="fas fa-cart-plus">Cart</i>
+      <a href="./cart.html" target="_blank">
+        <i class="fas fa-cart-plus">Cart</i></a
+      >
     </header>
     <main>
       <div class="single-product">
         <div class="single-product-img">
           <img src="../backend/images/teddy_1.jpg" alt="Norbert Teddy" />
         </div>
-        <div class="product-name">Norbert Teddy</div>
-        <div class="product-description">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        <div class="single-product-info">
+          <div class="product-name">Norbert Teddy</div>
+          <div class="product-description">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </div>
+          <div class="product-price">$29.00</div>
+          <div class="choose-color">
+            <label for="color">Choose color</label>
+            <select class="form-select" aria-label="Default select example">
+              <option value="1">One</option>
+              <option value="2">Two</option>
+              <option value="3">Three</option>
+            </select>
+          </div>
+          <a href="cart.html" target="_blank">
+            <button class="add-to-cart" type="button">ADD TO CART</button>
+          </a>
         </div>
-        <div class="product-price">$29.00</div>
-        <select class="form-select" aria-label="Default select example">
-          <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
-        </select>
       </div>
     </main>
     <footer>
