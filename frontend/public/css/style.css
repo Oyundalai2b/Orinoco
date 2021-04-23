@@ -104,6 +104,17 @@ body main {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+form {
+  padding: 10px;
+}
+form .col-md-4,
+form .col-md-6,
+form .col-md-3,
+form .col-12 .form-check input.form-check-input,
+form label {
+  padding: 5px 20px;
+}
+
 main .container {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   display: flex;
