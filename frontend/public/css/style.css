@@ -43,7 +43,7 @@ body main {
   text-decoration: none;
   padding: 10px;
 }
-.product-container .product a .product-img img {
+.product-container .product a img#product-img {
   justify-content: space-around;
   width: 100%;
   height: 300px;
