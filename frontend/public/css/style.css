@@ -26,7 +26,7 @@ body main {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: start;
+  justify-content: space-evenly;
   padding: 10px;
 }
 .product-container .product {
@@ -104,15 +104,76 @@ body main {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-form {
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  text-align: center;
+  line-height: 36px;
+}
+main label.cart {
+  margin-top: 20px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+main .shopping-cart {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px 0 0;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  width: 60%;
+  height: auto;
+  margin: 10px auto;
+}
+main .shopping-cart .product {
+  width: 40%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+main .shopping-cart .product img {
+  width: 45%;
+  height: auto;
+  padding: 5px;
+}
+main .shopping-cart .product label.cart-product {
+  width: 45%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+main label.total {
+  font-weight: 700;
+  margin-top: 10px;
+}
+main form {
   padding: 10px;
 }
-form .col-md-4,
-form .col-md-6,
-form .col-md-3,
-form .col-12 .form-check input.form-check-input,
-form label {
+main form .col-md-4,
+main form .col-md-6,
+main form .col-md-3,
+main form .form-check input.form-check-input,
+main form label {
   padding: 5px 20px;
+}
+main form .col-12 {
+  text-align: center;
+}
+main form .col-12 .btn-primary {
+  cursor: pointer;
+  border-radius: 20px;
+  padding: 10px 20px;
+  background-color: #f3eaf1;
+  color: #000000;
+  border-style: double;
+  border-color: black;
+}
+main form .col-12 .btn-primary:hover {
+  cursor: pointer;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 main .container {

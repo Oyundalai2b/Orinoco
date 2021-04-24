@@ -24,11 +24,12 @@ body {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: start;
+  justify-content: space-evenly;
   padding: 10px;
   .product {
     margin: 10px;
     display: flex;
+
     flex-direction: column;
     padding: 10px;
     background-color: #f3eaf1;
