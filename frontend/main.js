@@ -21,6 +21,31 @@
   });
 })();
 
+// fetch data from API
+
+fetch("http://localhost:3000/api/teddies")
+  .then((response) => response.json())
+  .then((data) => {
+    for (let i = 0; i < data.length; i++) {
+      const teddy = data[i];
+      console.log(teddy);
+
+      let teddiesContainer = document.getElementById("prod-container");
+
+      // create html element for current teddy and add it to div.product-container
+      let divTeddy = document.createElement("div");
+      divTeddy.className = "product";
+      let teddyLink = document.createElement("a");
+      let teddyName = document.createElement("div");
+      teddyName.textContent = teddy.name;
+
+      divTeddy.appendChild(teddyLink);
+      divTeddy.appendChild(teddyName);
+
+      teddiesContainer.appendChild(divTeddy);
+    }
+  });
+
 //displayAllProducts() in index.html
 
 // const api_url = "http://localhost:3000/api/teddies";

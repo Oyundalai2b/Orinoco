@@ -17,60 +17,39 @@
       >
     </header>
     <main>
-      <div class="product-container">
-        <div class="product">
+      <div class="product-container" id="prod-container">
+        <!-- <div class="product">
           <a href="product.html" target="_blank">
             <img src="" id="product-img" />
-            <!-- <script>
-              console.log("fetch a image");
-              fetch("teddy_1.jpg")
-                .then((response) => {
-                  console.log(response);
-                  return response.blob();
-                })
-                .then((blob) => {
-                  console.log(blob);
-                  document.getElementById(
-                    "product-img"
-                  ).src = URL.createObjectURL(blob);
-                });
-            </script> -->
+
             <div class="product-name"></div>
             <div class="product-description"></div>
             <div class="product-price">$</div>
           </a>
-        </div>
-        <!-- <script>
-          console.log("fetch a image");
-          fetch("teddy_1.jpg")
-            .then((response) => {
-              console.log(response);
-              return response.blob();
-            })
-            .then((blob) => {
-              console.log(blob);
-              document.getElementsByClassName(
-                "product-img"
-              ).src = URL.createObjectURL(blob);
-            });
+        </div> -->
+        <script>
+          // displayAllProducts();
 
-          displayAllProducts()
-          const api_url = "http://localhost:3000/api/teddies";
-          async function getTeddies() {
-            const response = await fetch(api_url);
-            const data = await response.json();
-            const { name, description, price } = data;
+          // async function getTeddies() {
+          //   const api_url =
+          //     "http://localhost:3000/api/teddies/5be9c8541c9d440000665243";
+          //   const response = await fetch(api_url);
+          //   const data = await response.json();
+          //   const { name, description, price, imageUrl, _id } = data;
 
-            document.getElementsByClassName("product-name").textContent = name;
-            document.getElementsByClassName(
-              "product-description"
-            ).textContent = description;
-            document.getElementsByClassName(
-              "product-price"
-            ).textContent = price;
-          }
-          getTeddies();
-        </script> -->
+          //   //create
+
+          //   document.getElementById("product-img").src = imageUrl;
+          //   document.getElementsByClassName("product-name").textContent = name;
+          //   document.getElementsByClassName(
+          //     "product-description"
+          //   ).textContent = description;
+          //   document.getElementsByClassName(
+          //     "product-price"
+          //   ).textContent = price;
+          // }
+          // getTeddies();
+        </script>
       </div>
     </main>
     <footer>
