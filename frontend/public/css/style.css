@@ -50,7 +50,7 @@ body main {
   object-fit: cover;
 }
 .product-container .product a .product-name {
-  font-weight: 900;
+  font-weight: 700;
   font-size: large;
 }
 .product-container .product a .product-description {

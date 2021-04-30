@@ -21,66 +21,47 @@
   });
 })();
 
-// fetch data from API
+//pseuso code displays allproduct()
+const TEDDIES_API_URL = "http://localhost:3000/api/";
 
-fetch("http://localhost:3000/api/teddies")
-  .then((response) => response.json())
-  .then((data) => {
-    for (let i = 0; i < data.length; i++) {
-      const teddy = data[i];
-      console.log(teddy);
+function displayAllProducts() {
+  fetch(TEDDIES_API_URL + "teddies")
+    .then((response) => response.json())
+    .then((data) => {
+      let output = "";
+      data.forEach(function (teddy) {
+        output += `<div class="product">
+          <a href="product.html?id=${teddy._id}" target="_blank" id="prod-link">
+            <img src="" id="product-img" />
+            <h4 class="product-name">${teddy.name}</h4>
+            <p class="product-description">${teddy.description}</p>
+            <p class="product-price">$${(teddy.price / 100).toFixed(2)}</p>
+          </a>
+        </div>`;
+        console.log(teddy);
+      });
+      document.getElementById("prod-container").innerHTML = output;
+    });
+}
 
-      let teddiesContainer = document.getElementById("prod-container");
+//display single product
 
-      // create html element for current teddy and add it to div.product-container
-      let divTeddy = document.createElement("div");
-      divTeddy.className = "product";
-      let teddyLink = document.createElement("a");
-      let teddyName = document.createElement("div");
-      teddyName.textContent = teddy.name;
-
-      divTeddy.appendChild(teddyLink);
-      divTeddy.appendChild(teddyName);
-
-      teddiesContainer.appendChild(divTeddy);
-    }
-  });
-
-//displayAllProducts() in index.html
-
-// const api_url = "http://localhost:3000/api/teddies";
-// async function getTeddies() {
-//   const response = await fetch(api_url);
-//   const data = await response.json();
-//   const { name, description, price } = data;
-
-//   document.getElementsByClassName("product-name").textContent = name;
-//   document.getElementsByClassName(
-//     "product-description"
-//   ).textContent = description;
-//   document.getElementsByClassName("product-price").textContent = price;
-// }
-// getTeddies();
-
-//showing imgages
-// console.log("fetch a image");
-// fetch("teddy_1.jpg")
-//   .then((response) => {
-//     console.log(response);
-//     return response.blob();
-//   })
-//   .then((blob) => {
-//     console.log(blob);
-//     document.getElementsByClassName("product-img").src = URL.createObjectURL(
-//       blob
-//     );
-//   });
-
-//showing images in another way
-// console.log("fatching an image");
-// catchImage();
-// async function catchImage() {
-//   const response = await fetch("teddy_1.jpg");
-//   const blob = await response.blob();
-//   document.getElementById("product-img").src = URL.createObjectURL(blob);
-// }
+function displayProduct(id) {
+  fetch(TEDDIES_API_URL + "teddies")
+    .then((response) => response.json())
+    .then((data) => {
+      let output = "";
+      data.forEach(function (teddy) {
+        output += `<div class="product">
+          <a href="product.html?id=${teddy._id}" target="_blank" id="prod-link">
+            <img src="" id="product-img" />
+            <h4 class="product-name">${teddy.name}</h4>
+            <p class="product-description">${teddy.description}</p>
+            <p class="product-price">$${(teddy.price / 100).toFixed(2)}</p>
+          </a>
+        </div>`;
+        console.log(teddy);
+      });
+      document.getElementById("prod-container").innerHTML = output;
+    });
+}

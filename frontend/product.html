@@ -19,15 +19,12 @@
     <main>
       <div class="single-product">
         <div class="single-product-img">
-          <img src="../backend/images/teddy_1.jpg" alt="Norbert Teddy" />
+          <img src="" alt="Norbert Teddy" />
         </div>
         <div class="single-product-info">
-          <div class="product-name">Norbert Teddy</div>
-          <div class="product-description">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </div>
-          <div class="product-price">$29.00</div>
+          <div class="product-name"></div>
+          <div class="product-description"></div>
+          <div class="product-price"></div>
           <div class="choose-color">
             <label for="color">Choose color</label>
             <select class="form-select" aria-label="Default select example">
@@ -57,5 +54,15 @@
       </ul>
     </footer>
     <script src="main.js"></script>
+    <script>
+      window.addEventListener("load", (event) => {
+        let url = window.location.href;
+        let newURL = new URL(url);
+        let id = newURL.searchParams.get("id");
+        if (id != "") {
+          displayProduct(id);
+        }
+      });
+    </script>
   </body>
 </html>

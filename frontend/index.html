@@ -18,38 +18,15 @@
     </header>
     <main>
       <div class="product-container" id="prod-container">
-        <!-- <div class="product">
-          <a href="product.html" target="_blank">
+        <div class="product">
+          <a href="product.html" target="_blank" id="prod-link">
             <img src="" id="product-img" />
 
-            <div class="product-name"></div>
-            <div class="product-description"></div>
-            <div class="product-price">$</div>
+            <h4 class="product-name"></h4>
+            <p class="product-description"></p>
+            <p class="product-price">$</p>
           </a>
-        </div> -->
-        <script>
-          // displayAllProducts();
-
-          // async function getTeddies() {
-          //   const api_url =
-          //     "http://localhost:3000/api/teddies/5be9c8541c9d440000665243";
-          //   const response = await fetch(api_url);
-          //   const data = await response.json();
-          //   const { name, description, price, imageUrl, _id } = data;
-
-          //   //create
-
-          //   document.getElementById("product-img").src = imageUrl;
-          //   document.getElementsByClassName("product-name").textContent = name;
-          //   document.getElementsByClassName(
-          //     "product-description"
-          //   ).textContent = description;
-          //   document.getElementsByClassName(
-          //     "product-price"
-          //   ).textContent = price;
-          // }
-          // getTeddies();
-        </script>
+        </div>
       </div>
     </main>
     <footer>
@@ -67,5 +44,10 @@
       </ul>
     </footer>
     <script src="main.js"></script>
+    <script>
+      window.addEventListener("load", (event) => {
+        displayAllProducts();
+      });
+    </script>
   </body>
 </html>
