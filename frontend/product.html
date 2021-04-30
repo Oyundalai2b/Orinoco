@@ -33,11 +33,11 @@
               <option value="3">Three</option>
             </select>
           </div>
-          <a href="cart.html" target="_blank">
-            <button class="add-to-cart" type="button">ADD TO CART</button>
-          </a>
         </div>
       </div>
+      <button class="add-to-cart" id="addToCart" type="button">
+        ADD TO CART
+      </button>
     </main>
     <footer>
       <ul>
@@ -62,6 +62,13 @@
         if (id != "") {
           displayProduct(id);
         }
+      });
+      let addCart = document.getElementById("addToCart");
+      addCart.addEventListener("click", (e) => {
+        window.teddy.selectedColor = document.getElementById(
+          "select-color"
+        ).value;
+        addToCart(window.teddy);
       });
     </script>
   </body>

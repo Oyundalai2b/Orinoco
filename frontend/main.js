@@ -50,6 +50,7 @@ function displayProduct(id) {
   fetch(TEDDIES_API_URL + id)
     .then((response) => response.json())
     .then((teddy) => {
+      window.teddy = teddy;
       let output = "";
 
       let colorOptions = "";
@@ -67,17 +68,59 @@ function displayProduct(id) {
           <div class="product-price">$${(teddy.price / 100).toFixed(2)}</div>
           <div class="choose-color">
             <label for="color">Choose color</label>
-            <select class="form-select" aria-label="Default select example">
+            <select class="form-select" id="select-color" aria-label="Default select example">
             ${colorOptions}             
             </select>
           </div>
-          <a href="cart.html" target="_blank">
-            <button class="add-to-cart" type="button">ADD TO CART</button>
-          </a>
+              
         </div>
       </div>`;
-      console.log(teddy);
+      //console.log(teddy);
 
       document.getElementById("prod-container").innerHTML = output;
     });
 }
+
+//addToCart function
+
+function addToCart(teddy) {
+  let key = `${teddy._id}_${teddy.selectedColor}`;
+
+  let cartItem = localStorage.getItem(key);
+  if (cartItem === null) {
+    localStorage.setItem(
+      key,
+      JSON.stringify({
+        img: teddy.imageUrl,
+        name: teddy.name,
+        description: teddy.description,
+        price: (teddy.price / 100).toFixed(2),
+        quantity: 1,
+        color: teddy.selectedColor,
+      })
+    );
+  } else {
+    localStorage.getItem(key);
+    let cartItem = JSON.parse(localStorage.getItem(key));
+    cartItem.quantity = cartItem.quantity + 1;
+    console.log(cartItem);
+    localStorage.setItem(key, JSON.stringify(cartItem));
+  }
+  //teddy.selectedColor
+  //teddy._id ni cart local storaged uussen esehiig shalgaad hooson bwal uusgeed, ugui bol toog negeer nemne.
+}
+
+/*
+{
+  "5be9c8541c9d440000665243_brown": {
+    id,
+    Image,
+    Name,
+    description,
+    price,
+    quantity
+  },
+
+}
+
+*/
