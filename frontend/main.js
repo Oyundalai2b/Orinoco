@@ -32,7 +32,7 @@ function displayAllProducts() {
       data.forEach(function (teddy) {
         output += `<div class="product">
           <a href="product.html?id=${teddy._id}" target="_blank" id="prod-link">
-            <img src="" id="product-img" />
+            <img src="${teddy.imageUrl}" id="product-img" />
             <h4 class="product-name">${teddy.name}</h4>
             <p class="product-description">${teddy.description}</p>
             <p class="product-price">$${(teddy.price / 100).toFixed(2)}</p>
@@ -52,7 +52,6 @@ function displayProduct(id) {
     .then((teddy) => {
       window.teddy = teddy;
       let output = "";
-
       let colorOptions = "";
       teddy.colors.forEach(function (color) {
         colorOptions += `<option value="${color}">${color}</option>`;
@@ -60,7 +59,7 @@ function displayProduct(id) {
 
       output += `<div class="single-product">
         <div class="single-product-img">
-          <img src="" alt="${teddy.name}" />
+          <img src="${teddy.imageUrl}" alt="${teddy.name}" />
         </div>
         <div class="single-product-info">
           <div class="product-name">${teddy.name}</div>
@@ -100,7 +99,6 @@ function addToCart(teddy) {
       })
     );
   } else {
-    localStorage.getItem(key);
     let cartItem = JSON.parse(localStorage.getItem(key));
     cartItem.quantity = cartItem.quantity + 1;
     console.log(cartItem);
@@ -110,17 +108,83 @@ function addToCart(teddy) {
   //teddy._id ni cart local storaged uussen esehiig shalgaad hooson bwal uusgeed, ugui bol toog negeer nemne.
 }
 
-/*
-{
-  "5be9c8541c9d440000665243_brown": {
-    id,
-    Image,
-    Name,
-    description,
-    price,
-    quantity
-  },
+//displayCartItems function
 
+function displayCartItems() {
+  let output = "";
+  let totalPrice = 0;
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    localStorage.getItem(key);
+    let cartItem = JSON.parse(localStorage.getItem(key));
+    console.log(key);
+    console.log(cartItem);
+    totalPrice += cartItem.price * cartItem.quantity;
+    output += `<div class="shopping-cart">
+      <div class="product">
+        <img
+          class="cart-product-img"
+          src="${cartItem.img}"
+          alt="${cartItem.name}"
+          width = 150px;
+          height = auto;
+        />
+        <label class="cart-product">${cartItem.name}</label>
+      </div>
+      <div class="product-color">${cartItem.color}</div>
+      <div class="quantity">
+        <input type="number" value="${cartItem.quantity}" min="1" />
+      </div>
+      <div class="total-price">${cartItem.price * cartItem.quantity}</div>
+      <div class="delete">delete</div>
+      
+    </div>  
+  `;
+  }
+  document.getElementById("total-price").innerHTML =
+    "TOTAL PRICE: $" + totalPrice;
+  document.getElementById("cart-container").innerHTML = output;
 }
 
-*/
+function submitForm(e) {
+  e.preventDefault();
+
+  let firstName = document.getElementById("first-name").value;
+  let lastName = document.getElementById("last-name").value;
+  let email = document.getElementById("email").value;
+  let city = document.getElementById("city").value;
+  let address = document.getElementById("address").value;
+
+  let products = [];
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    let productId = key.split("_")[0];
+    products.push(productId);
+  }
+
+  fetch("http://localhost:3000/api/teddies/order", {
+    method: "POST",
+    headers: {
+      Accept: "application/json, text/plain, */*",
+      "Content-type": "application/json",
+    },
+    body: JSON.stringify({
+      contact: {
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        city: city,
+        address: address,
+      },
+      products: products,
+    }),
+  })
+    .then((response) => {
+      response.json();
+    })
+    .then((data) => {
+      console.log(data);
+      //TODO: sessionStorage ruu orderId, totalPrice iig hadgalaad cart aa hooslood confirmation.html ruu redirect hiih
+    });
+}
+document.getElementById("submit-form").addEventListener("submit", submitForm);

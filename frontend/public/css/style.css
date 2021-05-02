@@ -116,7 +116,12 @@ main label.cart {
   text-transform: uppercase;
   font-weight: 700;
 }
-main .shopping-cart {
+main #cart-container {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+}
+main #cart-container .shopping-cart {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -124,28 +129,28 @@ main .shopping-cart {
   padding: 0 10px 0 0;
   border-radius: 20px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  width: 60%;
+  width: auto;
   height: auto;
   margin: 10px auto;
 }
-main .shopping-cart .product {
+main #cart-container .shopping-cart .product {
   width: 40%;
   display: flex;
   flex-direction: row;
   align-items: center;
 }
-main .shopping-cart .product img {
+main #cart-container .shopping-cart .product img {
   width: 45%;
   height: auto;
   padding: 5px;
 }
-main .shopping-cart .product label.cart-product {
+main #cart-container .shopping-cart .product label.cart-product {
   width: 45%;
   display: flex;
   flex-direction: row;
   align-items: center;
 }
-main label.total {
+main #cart-container label.total {
   font-weight: 700;
   margin-top: 10px;
 }

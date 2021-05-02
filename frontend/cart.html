@@ -13,57 +13,30 @@
         <img src="./Orinoco_logo.jpg" alt="Orinoco_logo"
       /></a>
       <a href="#" target="_blank"></a>
-      <a href="./cart.html" target="_blank">
+      <a href="./cart.html" target="_parent">
         <i class="fas fa-cart-plus">Cart</i></a
       >
     </header>
     <main>
       <label for="shopping" class="cart">Shopping cart</label>
-      <div class="shopping-cart">
-        <div class="product">
-          <img
-            class="cart-product-img"
-            src="../backend/images/teddy_1.jpg"
-            alt="teddy"
-          />
-          <label class="cart-product">Nordek bear</label>
+      <div class="container" id="cart-container">
+        <div class="shopping-cart">
+          <div class="product">
+            <img class="cart-product-img" src="" alt="teddy" />
+            <label class="cart-product"></label>
+          </div>
+          <div class="product-color"></div>
+          <div class="quantity">
+            <input type="number" value="1" min="1" />
+          </div>
+          <div class="total-price"></div>
+          <div class="delete">delete</div>
         </div>
-        <div class="product-color">brown</div>
-        <div class="quantity">2</div>
-        <div class="total-price">200</div>
-        <div class="delete">delete</div>
       </div>
-      <div class="shopping-cart">
-        <div class="product">
-          <img
-            class="cart-product-img"
-            src="../backend/images/teddy_1.jpg"
-            alt="teddy"
-          />
-          <label class="cart-product">Nordek bear</label>
-        </div>
-        <div class="product-color">brown</div>
-        <div class="quantity">2</div>
-        <div class="total-price">200</div>
-        <div class="delete">delete</div>
-      </div>
-      <div class="shopping-cart">
-        <div class="product">
-          <img
-            class="cart-product-img"
-            src="../backend/images/teddy_1.jpg"
-            alt="teddy"
-          />
-          <label class="cart-product">Nordek bear</label>
-        </div>
-        <div class="product-color">brown</div>
-        <div class="quantity">2</div>
-        <div class="total-price">200</div>
-        <div class="delete">delete</div>
-      </div>
-      <label class="total">Total price: $ 100</label>
+      <label class="total" id="total-price">Total price: $ </label>
+
       <div class="container">
-        <form class="row g-3 needs-validation" novalidate>
+        <form class="row g-3 needs-validation" id="submit-form" novalidate>
           <div class="col-md-4">
             <label for="validationCustom01" class="form-label"
               >First name</label
@@ -71,8 +44,8 @@
             <input
               type="text"
               class="form-control"
-              id="validationCustom01"
-              value="Mark"
+              id="first-name"
+              value=""
               required
             />
             <div class="valid-feedback">Looks good!</div>
@@ -82,8 +55,8 @@
             <input
               type="text"
               class="form-control"
-              id="validationCustom02"
-              value="Otto"
+              id="last-name"
+              value=""
               required
             />
             <div class="valid-feedback">Looks good!</div>
@@ -97,7 +70,7 @@
               <input
                 type="text"
                 class="form-control"
-                id="validationCustomUsername"
+                id="email"
                 aria-describedby="inputGroupPrepend"
                 required
               />
@@ -105,52 +78,19 @@
             </div>
           </div>
           <div class="col-md-6">
-            <label for="validationCustom03" class="form-label">City</label>
-            <input
-              type="text"
-              class="form-control"
-              id="validationCustom03"
-              required
-            />
+            <label for="validationCustom03" class="form-label">Address</label>
+            <input type="text" class="form-control" id="address" required />
+            <div class="invalid-feedback">Please provide a valid address.</div>
+          </div>
+          <div class="col-md-3">
+            <label for="validationCustom05" class="form-label">City</label>
+            <input type="text" class="form-control" id="city" required />
             <div class="invalid-feedback">Please provide a valid city.</div>
           </div>
-          <div class="col-md-3">
-            <label for="validationCustom04" class="form-label">State</label>
-            <select class="form-select" id="validationCustom04" required>
-              <option selected disabled value="">Choose...</option>
-              <option>...</option>
-            </select>
-            <div class="invalid-feedback">Please select a valid state.</div>
-          </div>
-          <div class="col-md-3">
-            <label for="validationCustom05" class="form-label">Zip</label>
-            <input
-              type="text"
-              class="form-control"
-              id="validationCustom05"
-              required
-            />
-            <div class="invalid-feedback">Please provide a valid zip.</div>
-          </div>
           <div class="col-12">
-            <div class="form-check">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                value=""
-                id="invalidCheck"
-                required
-              />
-              <label class="form-check-label" for="invalidCheck">
-                Agree to terms and conditions
-              </label>
-              <div class="invalid-feedback">
-                You must agree before submitting.
-              </div>
-            </div>
-          </div>
-          <div class="col-12">
-            <button class="btn btn-primary" type="submit">SUBMIT FORM</button>
+            <button class="btn btn-primary" type="submit" id="submit-button">
+              SUBMIT FORM
+            </button>
           </div>
         </form>
       </div>
@@ -170,5 +110,10 @@
       </ul>
     </footer>
     <script src="main.js"></script>
+    <script>
+      window.addEventListener("load", (event) => {
+        displayCartItems();
+      });
+    </script>
   </body>
 </html>
