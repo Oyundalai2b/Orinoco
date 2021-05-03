@@ -107,20 +107,25 @@ function addToCart(teddy) {
   //teddy.selectedColor
   //teddy._id ni cart local storaged uussen esehiig shalgaad hooson bwal uusgeed, ugui bol toog negeer nemne.
 }
-
+function calcTotalPrice() {
+  let totalPrice = 0;
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    let cartItem = JSON.parse(localStorage.getItem(key));
+    totalPrice += cartItem.price * cartItem.quantity;
+  }
+  return totalPrice;
+}
 //displayCartItems function
 
 function displayCartItems() {
   let output = "";
-  let totalPrice = 0;
-  for (let i = 0; i < localStorage.length; i++) {
-    const key = localStorage.key(i);
-    localStorage.getItem(key);
-    let cartItem = JSON.parse(localStorage.getItem(key));
-    console.log(key);
-    console.log(cartItem);
-    totalPrice += cartItem.price * cartItem.quantity;
-    output += `<div class="shopping-cart">
+  if (localStorage.lenght > 0) {
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      let cartItem = JSON.parse(localStorage.getItem(key));
+
+      output += `<div class="shopping-cart">
       <div class="product">
         <img
           class="cart-product-img"
@@ -140,9 +145,12 @@ function displayCartItems() {
       
     </div>  
   `;
+    }
+  } else {
+    output = "There is no item in the cart.";
   }
   document.getElementById("total-price").innerHTML =
-    "TOTAL PRICE: $" + totalPrice;
+    "TOTAL PRICE: $" + calcTotalPrice();
   document.getElementById("cart-container").innerHTML = output;
 }
 
@@ -180,11 +188,24 @@ function submitForm(e) {
     }),
   })
     .then((response) => {
-      response.json();
+      return response.json();
     })
     .then((data) => {
       console.log(data);
-      //TODO: sessionStorage ruu orderId, totalPrice iig hadgalaad cart aa hooslood confirmation.html ruu redirect hiih
+      sessionStorage.setItem("orderId", data.orderId);
+      sessionStorage.setItem("totalPrice", calcTotalPrice());
+      window.location.href = "confirmation.html";
+      localStorage.clear();
     });
 }
-document.getElementById("submit-form").addEventListener("submit", submitForm);
+
+//TODO: update cart function, remove from cart function hiih
+
+// confirmation.html function
+
+function displayConfirmationOrder() {
+  document.getElementById("total-price").innerHTML =
+    "Total price: $" + sessionStorage.getItem("totalPrice");
+  document.getElementById("order-id").innerHTML =
+    "Your order ID: " + sessionStorage.getItem("orderId");
+}
