@@ -31,7 +31,7 @@ function displayAllProducts() {
       let output = "";
       data.forEach(function (teddy) {
         output += `<div class="product">
-          <a href="product.html?id=${teddy._id}" target="_blank" id="prod-link">
+          <a href="product.html?id=${teddy._id}"  id="prod-link">
             <img src="${teddy.imageUrl}" id="product-img" />
             <h4 class="product-name">${teddy.name}</h4>
             <p class="product-description">${teddy.description}</p>
@@ -104,6 +104,7 @@ function addToCart(teddy) {
     console.log(cartItem);
     localStorage.setItem(key, JSON.stringify(cartItem));
   }
+  // TODO: display message to inform user
   //teddy.selectedColor
   //teddy._id ni cart local storaged uussen esehiig shalgaad hooson bwal uusgeed, ugui bol toog negeer nemne.
 }
@@ -120,7 +121,7 @@ function calcTotalPrice() {
 
 function displayCartItems() {
   let output = "";
-  if (localStorage.lenght > 0) {
+  if (localStorage.length > 0) {
     for (let i = 0; i < localStorage.length; i++) {
       const key = localStorage.key(i);
       let cartItem = JSON.parse(localStorage.getItem(key));
@@ -138,7 +139,9 @@ function displayCartItems() {
       </div>
       <div class="product-color">${cartItem.color}</div>
       <div class="quantity">
-        <input type="number" value="${cartItem.quantity}" min="1" />
+        <input type="number" name="${key}" value="${
+        cartItem.quantity
+      }" min="1" />
       </div>
       <div class="total-price">${cartItem.price * cartItem.quantity}</div>
       <div class="delete">delete</div>
@@ -199,8 +202,6 @@ function submitForm(e) {
     });
 }
 
-//TODO: update cart function, remove from cart function hiih
-
 // confirmation.html function
 
 function displayConfirmationOrder() {
@@ -209,3 +210,29 @@ function displayConfirmationOrder() {
   document.getElementById("order-id").innerHTML =
     "Your order ID: " + sessionStorage.getItem("orderId");
 }
+
+//update cart function
+function updateCartItems() {
+  const cartForm = document.getElementById("cart-items");
+  for (let i = 0; i < cartForm.elements.length; i++) {
+    const element = cartForm.elements[i];
+
+    const key = element.name;
+    const qty = element.value;
+
+    // get cart item by key
+    const item = localStorage.getItem(key);
+    const itemObj = JSON.parse(item);
+    itemObj.quantity = qty;
+
+    // save update cart item
+    localStorage.setItem(key, JSON.stringify(itemObj));
+
+    // TODO: display message to inform user
+    var toastElList = [].slice.call(document.querySelectorAll(".toast"));
+    var toastList = toastElList.map(function (toastEl) {
+      return new bootstrap.Toast(toastEl);
+    });
+  }
+}
+//delete function
