@@ -31,15 +31,18 @@
               <input type="number" value="1" min="1" />
             </div>
             <div class="total-price"></div>
-            <div class="delete">delete</div>
+            <!-- <div class="delete">delete</div> -->
+            <i class="fas fa-trash-alt" id="delete-item"></i>
           </div>
         </div>
       </form>
       <label class="total" id="total-price">Total price: $ </label>
-      <button class="update" id="update-cart">UPDATE CART</button>
+      <button class="update btn btn-primary" id="update-cart">
+        UPDATE CART
+      </button>
 
-      <div class="container">
-        <form class="row g-3 needs-validation" id="submit-form" novalidate>
+      <div class="container" id="contact-container">
+        <form class="row g-3 needs-validation" id="submit-form" validate>
           <div class="col-md-4">
             <label for="validationCustom01" class="form-label"
               >First name</label
@@ -120,9 +123,11 @@
       document
         .getElementById("submit-form")
         .addEventListener("submit", submitForm);
-
       const updateButton = document.getElementById("update-cart");
       updateButton.addEventListener("click", updateCartItems);
+      document
+        .getElementById("delete-item")
+        .addEventListener("click", deleteItem);
     </script>
   </body>
 </html>

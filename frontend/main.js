@@ -144,7 +144,7 @@ function displayCartItems() {
       }" min="1" />
       </div>
       <div class="total-price">${cartItem.price * cartItem.quantity}</div>
-      <div class="delete">delete</div>
+      <i class="fas fa-trash-alt" id="delete-item"></i>
       
     </div>  
   `;
@@ -236,3 +236,6 @@ function updateCartItems() {
   }
 }
 //delete function
+// function deleteItem() {
+//   localStorage.removeItem("key");
+// }
