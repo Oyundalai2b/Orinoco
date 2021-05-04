@@ -119,15 +119,25 @@
     <script>
       window.addEventListener("load", (event) => {
         displayCartItems();
+
+        let deleteItemsFromCart = document.getElementsByClassName(
+          "delete-item"
+        );
+        for (let i = 0; i < deleteItemsFromCart.length; i++) {
+          let deleteButton = deleteItemsFromCart[i];
+
+          deleteButton.addEventListener("click", function (e) {
+            deleteItem(deleteButton.getAttribute("value"));
+          });
+        }
       });
+
       document
         .getElementById("submit-form")
         .addEventListener("submit", submitForm);
+
       const updateButton = document.getElementById("update-cart");
       updateButton.addEventListener("click", updateCartItems);
-      document
-        .getElementById("delete-item")
-        .addEventListener("click", deleteItem);
     </script>
   </body>
 </html>

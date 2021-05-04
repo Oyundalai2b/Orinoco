@@ -144,7 +144,7 @@ function displayCartItems() {
       }" min="1" />
       </div>
       <div class="total-price">${cartItem.price * cartItem.quantity}</div>
-      <i class="fas fa-trash-alt" id="delete-item"></i>
+      <i class="fas fa-trash-alt delete-item" value="${key}"></i>
       
     </div>  
   `;
@@ -229,13 +229,17 @@ function updateCartItems() {
     localStorage.setItem(key, JSON.stringify(itemObj));
 
     // TODO: display message to inform user
-    var toastElList = [].slice.call(document.querySelectorAll(".toast"));
-    var toastList = toastElList.map(function (toastEl) {
-      return new bootstrap.Toast(toastEl);
-    });
+    // var toastElList = [].slice.call(document.querySelectorAll(".toast"));
+    // var toastList = toastElList.map(function (toastEl) {
+    //   return new bootstrap.Toast(toastEl);
+    // });
   }
+  console.log("Cart  has been updated");
 }
 //delete function
-// function deleteItem() {
-//   localStorage.removeItem("key");
-// }
+function deleteItem(key) {
+  console.log("Deleting..." + key);
+  localStorage.removeItem(key);
+
+  displayCartItems();
+}
