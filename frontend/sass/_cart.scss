@@ -4,6 +4,12 @@ main {
   justify-content: space-around;
   text-align: center;
   line-height: 36px;
+  .toast {
+    width: auto;
+    background-color: #d1e7dd;
+    color: #0f5132;
+    font-weight: 500;
+  }
   label.cart {
     font-size: larger;
     margin-top: 20px;

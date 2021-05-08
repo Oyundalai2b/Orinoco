@@ -1,27 +1,4 @@
-(function () {
-  "use strict";
-
-  // Fetch all the forms we want to apply custom Bootstrap validation styles to
-  var forms = document.querySelectorAll(".needs-validation");
-
-  // Loop over them and prevent submission
-  Array.prototype.slice.call(forms).forEach(function (form) {
-    form.addEventListener(
-      "submit",
-      function (event) {
-        if (!form.checkValidity()) {
-          event.preventDefault();
-          event.stopPropagation();
-        }
-
-        form.classList.add("was-validated");
-      },
-      false
-    );
-  });
-})();
-
-//pseuso code displays allproduct()
+// displays allproduct()
 const TEDDIES_API_URL = "http://localhost:3000/api/teddies/";
 
 function displayAllProducts() {
@@ -155,6 +132,15 @@ function displayCartItems() {
   document.getElementById("total-price").innerHTML =
     "TOTAL PRICE: $" + calcTotalPrice();
   document.getElementById("cart-container").innerHTML = output;
+
+  let deleteItemsFromCart = document.getElementsByClassName("delete-item");
+  for (let i = 0; i < deleteItemsFromCart.length; i++) {
+    let deleteButton = deleteItemsFromCart[i];
+
+    deleteButton.addEventListener("click", function (e) {
+      deleteItem(deleteButton.getAttribute("value"));
+    });
+  }
 }
 
 function submitForm(e) {
@@ -227,19 +213,24 @@ function updateCartItems() {
 
     // save update cart item
     localStorage.setItem(key, JSON.stringify(itemObj));
+    displayCartItems();
 
-    // TODO: display message to inform user
-    // var toastElList = [].slice.call(document.querySelectorAll(".toast"));
-    // var toastList = toastElList.map(function (toastEl) {
-    //   return new bootstrap.Toast(toastEl);
-    // });
+    informMessage();
   }
-  console.log("Cart  has been updated");
 }
 //delete function
 function deleteItem(key) {
   console.log("Deleting..." + key);
   localStorage.removeItem(key);
-
   displayCartItems();
+  informMessage();
+}
+
+// display message to inform user
+
+function informMessage() {
+  var toastElList = [].slice.call(document.querySelectorAll(".toast"));
+  var toastList = toastElList.map(function (toastEl) {
+    return new bootstrap.Toast(toastEl).show(); // No need for options; use the default options
+  });
 }
