@@ -19,50 +19,39 @@ body {
 body main {
   min-height: 420px;
 }
-
-.product-container {
+body main .product-container {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  width: 80%;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
+  width: 100%;
   padding: 10px;
 }
-.product-container .product {
-  margin: 10px;
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
+body main .product-container .product {
   background-color: #f3eaf1;
-  width: 30%;
   border-radius: 10px;
 }
-.product-container .product a {
+body main .product-container .product:hover {
+  cursor: pointer;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+body main .product-container .product a {
   color: #000000;
   text-decoration: none;
-  padding: 10px;
 }
-.product-container .product a img#product-img {
+body main .product-container .product a img#product-img {
   justify-content: space-around;
   width: 100%;
   height: 300px;
   object-fit: cover;
+  border-radius: 10px;
 }
-.product-container .product a .product-name {
+body main .product-container .product a .product-name {
   font-weight: 700;
   font-size: large;
 }
-.product-container .product a .product-description {
+body main .product-container .product a .product-description {
   padding-bottom: 10px;
 }
-.product-container .product a .product-price {
+body main .product-container .product a .product-price {
   font-weight: 900;
-}
-.product-container .product a:hover {
-  cursor: pointer;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 main .btn-primary {
@@ -81,10 +70,7 @@ main .btn-primary:hover {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 main .single-product {
-  width: 80%;
-  margin: 20px auto;
-  display: flex;
-  flex-direction: row;
+  width: 100%;
 }
 main .single-product .single-product-img img {
   border-radius: 20px;
@@ -93,15 +79,6 @@ main .single-product .single-product-img img {
   object-fit: cover;
   border-radius: 20px;
   border: navy;
-}
-main .single-product .single-product-info {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
-  width: 100%;
-  height: auto;
-  margin: 0 20px;
 }
 main .single-product .single-product-info .product-name,
 main .single-product .single-product-info .product-price {
@@ -113,9 +90,6 @@ main .single-product .single-product-info .choose-color {
 }
 
 main {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
   text-align: center;
   line-height: 36px;
 }
@@ -134,6 +108,9 @@ main label.cart {
 main label.total {
   font-weight: 700;
 }
+main button.update {
+  margin-left: 50px !important;
+}
 main .btn-primary {
   cursor: pointer;
   border-radius: 20px;
@@ -148,52 +125,39 @@ main .btn-primary:hover {
   cursor: pointer;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-main form#cart-items {
-  width: 60%;
-  margin: 10px auto;
-}
-main form#cart-items #cart-container {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-}
-main form#cart-items #cart-container .shopping-cart {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 10px 0 0;
+main form#cart-items #cart-container .product {
   border-radius: 20px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  width: auto;
-  height: auto;
-  margin: 10px auto;
 }
-main form#cart-items #cart-container .shopping-cart .product {
-  width: 40%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-main form#cart-items #cart-container .shopping-cart .product img {
-  width: 45%;
+main form#cart-items #cart-container .product img {
   height: auto;
-  padding: 5px;
+  padding: 10px;
   border-radius: 20px;
 }
-main form#cart-items #cart-container .shopping-cart .product label.cart-product {
-  width: 45%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-main form#cart-items #cart-container .shopping-cart i {
-  font-size: large;
-  margin-right: 20px;
-}
-main form#cart-items #cart-container label.total {
+main form#cart-items #cart-container .product label.total {
   font-weight: 700;
-  margin-top: 10px;
+}
+main form#cart-items #cart-container .product .quantity input {
+  width: 100%;
+}
+main form#cart-items #cart-container .product .col-sm-12,
+main form#cart-items #cart-container .product .col-md-2,
+main form#cart-items #cart-container .product .col-lg-2 {
+  margin: auto 0;
+}
+main form#cart-items #cart-container .product .col-sm-6 {
+  margin: auto 0;
+  padding-left: 10px;
+  padding-bottom: 10px;
+}
+main form#cart-items #cart-container .product .col-sm-6 .cart-product {
+  font-weight: 700;
+}
+main form#cart-items #cart-container .product .col-sm-6 .product-color {
+  font-weight: 700;
+}
+main form#cart-items #cart-container .product .col-sm-6 input {
+  padding-left: 20px;
 }
 main #contact-container {
   padding: 0 !important;
@@ -227,7 +191,7 @@ main form .col-12 .btn-primary:hover {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-main .container {
+main .confirmation-container {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   display: flex;
   flex-direction: column;
@@ -236,10 +200,10 @@ main .container {
   line-height: 30px;
   border-radius: 20px;
   width: 60%;
-  margin: 0 auto 20px auto;
+  margin: 20px auto;
   padding: 0 0 20px 0;
 }
-main .container .thanks {
+main .confirmation-container .thanks {
   width: 100%;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
@@ -247,18 +211,20 @@ main .container .thanks {
   text-align: center;
   font-weight: 700;
   font-size: 24px;
+  line-height: 48px;
 }
-main .container .total {
+main .confirmation-container .total {
   padding: 40px 0 10px 0;
 }
-main .container .back {
+main .confirmation-container .back {
   cursor: pointer;
   margin-top: 10px;
   border-radius: 20px;
   padding: 10px 20px;
   background-color: #f3eaf1;
+  border-style: solid;
 }
-main .container .back:hover {
+main .confirmation-container .back:hover {
   cursor: pointer;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }

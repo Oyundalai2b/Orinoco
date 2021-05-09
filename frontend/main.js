@@ -7,13 +7,15 @@ function displayAllProducts() {
     .then((data) => {
       let output = "";
       data.forEach(function (teddy) {
-        output += `<div class="product">
-          <a href="product.html?id=${teddy._id}"  id="prod-link">
-            <img src="${teddy.imageUrl}" id="product-img" />
-            <h4 class="product-name">${teddy.name}</h4>
-            <p class="product-description">${teddy.description}</p>
-            <p class="product-price">$${(teddy.price / 100).toFixed(2)}</p>
-          </a>
+        output += `<div class="m-0.5 col-lg-4 col-md-6 col-sm-12">
+          <div class="product">        
+            <a href="product.html?id=${teddy._id}"  id="prod-link">
+              <img src="${teddy.imageUrl}" id="product-img" />
+              <h4 class="product-name">${teddy.name}</h4>
+              <p class="product-description">${teddy.description}</p>
+              <p class="product-price">$${(teddy.price / 100).toFixed(2)}</p>
+            </a>
+          </div>
         </div>`;
         console.log(teddy);
       });
@@ -34,11 +36,11 @@ function displayProduct(id) {
         colorOptions += `<option value="${color}">${color}</option>`;
       });
 
-      output += `<div class="single-product">
-        <div class="single-product-img">
+      output += `<div class="m-2 row single-product">
+        <div class=" col-sm-12 col-md-12 col-lg-6 single-product-img">
           <img src="${teddy.imageUrl}" alt="${teddy.name}" />
         </div>
-        <div class="single-product-info">
+        <div class="col-sm-12 col-md-12 col-lg-6 single-product-info">
           <div class="product-name">${teddy.name}</div>
           <div class="product-description">${teddy.description}</div>
           <div class="product-price">$${(teddy.price / 100).toFixed(2)}</div>
@@ -47,8 +49,7 @@ function displayProduct(id) {
             <select class="form-select" id="select-color" aria-label="Default select example">
             ${colorOptions}             
             </select>
-          </div>
-              
+          </div>              
         </div>
       </div>`;
       //console.log(teddy);
@@ -81,9 +82,7 @@ function addToCart(teddy) {
     console.log(cartItem);
     localStorage.setItem(key, JSON.stringify(cartItem));
   }
-  // TODO: display message to inform user
-  //teddy.selectedColor
-  //teddy._id ni cart local storaged uussen esehiig shalgaad hooson bwal uusgeed, ugui bol toog negeer nemne.
+  informMessage();
 }
 function calcTotalPrice() {
   let totalPrice = 0;
@@ -104,25 +103,30 @@ function displayCartItems() {
       let cartItem = JSON.parse(localStorage.getItem(key));
 
       output += `<div class="shopping-cart">
-      <div class="product">
+      <div class="row m-3 product">
         <img
-          class="cart-product-img"
+          class="col-sm-12 col-md-2 col-lg-2 cart-product-img"
           src="${cartItem.img}"
           alt="${cartItem.name}"
-          width = 150px;
-          height = auto;
         />
-        <label class="cart-product">${cartItem.name}</label>
-      </div>
-      <div class="product-color">${cartItem.color}</div>
-      <div class="quantity">
-        <input type="number" name="${key}" value="${
+        <div class="col-sm-6 col-md-2 col-lg-2">
+          <label class="cart-product">${cartItem.name}</label>
+        </div>
+        <div class="col-sm-6 col-md-2 col-lg-2 product-color">${
+          cartItem.color
+        }</div>
+        <div class="col-sm-6 col-md-2 col-lg-2 quantity">
+          <input type="number" name="${key}" value="${
         cartItem.quantity
       }" min="1" />
+        </div>
+        <div class="col-sm-4 col-md-2 col-lg-2 total-price">$${
+          cartItem.price * cartItem.quantity
+        }</div>
+        <div class="col-sm-2 col-md-2 col-lg-2 delete-icon" >
+          <i class="fas fa-trash-alt delete-item" value="${key}"></i>
+        </div>
       </div>
-      <div class="total-price">${cartItem.price * cartItem.quantity}</div>
-      <i class="fas fa-trash-alt delete-item" value="${key}"></i>
-      
     </div>  
   `;
     }
@@ -130,7 +134,7 @@ function displayCartItems() {
     output = "There is no item in the cart.";
   }
   document.getElementById("total-price").innerHTML =
-    "TOTAL PRICE: $" + calcTotalPrice();
+    "TOTAL PRICE: $ " + calcTotalPrice();
   document.getElementById("cart-container").innerHTML = output;
 
   let deleteItemsFromCart = document.getElementsByClassName("delete-item");
@@ -151,7 +155,6 @@ function submitForm(e) {
   let email = document.getElementById("email").value;
   let city = document.getElementById("city").value;
   let address = document.getElementById("address").value;
-
   let products = [];
   for (let i = 0; i < localStorage.length; i++) {
     const key = localStorage.key(i);
@@ -202,7 +205,6 @@ function updateCartItems() {
   const cartForm = document.getElementById("cart-items");
   for (let i = 0; i < cartForm.elements.length; i++) {
     const element = cartForm.elements[i];
-
     const key = element.name;
     const qty = element.value;
 
@@ -213,10 +215,9 @@ function updateCartItems() {
 
     // save update cart item
     localStorage.setItem(key, JSON.stringify(itemObj));
-    displayCartItems();
-
     informMessage();
   }
+  displayCartItems();
 }
 //delete function
 function deleteItem(key) {
