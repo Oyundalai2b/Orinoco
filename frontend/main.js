@@ -82,6 +82,7 @@ function addToCart(teddy) {
     console.log(cartItem);
     localStorage.setItem(key, JSON.stringify(cartItem));
   }
+  updateTotalItemCount();
   informMessage();
 }
 function calcTotalPrice() {

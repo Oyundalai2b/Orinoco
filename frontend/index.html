@@ -12,7 +12,7 @@
       </a>
       <a href="./cart.html">
         <i class="fas fa-cart-plus">
-          <span class="badge badge-primary" id="total-items">5</span> Cart</i
+          <span class="badge badge-primary" id="total-items"></span> Cart</i
         ></a
       >
     </header>
@@ -48,6 +48,9 @@
     <script>
       window.addEventListener("load", (event) => {
         displayAllProducts();
+      });
+      window.addEventListener("load", (event) => {
+        updateTotalItemCount();
       });
     </script>
   </body>
