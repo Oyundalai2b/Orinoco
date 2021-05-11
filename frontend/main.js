@@ -93,6 +93,20 @@ function calcTotalPrice() {
   }
   return totalPrice;
 }
+
+function totalItems() {
+  let totalItems = 0;
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    let cartItem = JSON.parse(localStorage.getItem(key));
+    totalItems += parseInt(cartItem.quantity);
+    console.log(cartItem);
+  }
+  return totalItems;
+}
+function updateTotalItemCount() {
+  document.getElementById("total-items").innerHTML = totalItems();
+}
 //displayCartItems function
 
 function displayCartItems() {
@@ -101,7 +115,6 @@ function displayCartItems() {
     for (let i = 0; i < localStorage.length; i++) {
       const key = localStorage.key(i);
       let cartItem = JSON.parse(localStorage.getItem(key));
-
       output += `<div class="shopping-cart">
       <div class="row m-3 product">
         <img
@@ -133,6 +146,7 @@ function displayCartItems() {
   } else {
     output = "There is no item in the cart.";
   }
+  updateTotalItemCount();
   document.getElementById("total-price").innerHTML =
     "TOTAL PRICE: $ " + calcTotalPrice();
   document.getElementById("cart-container").innerHTML = output;
