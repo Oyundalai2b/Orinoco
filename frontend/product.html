@@ -82,8 +82,7 @@
     <script>
       window.addEventListener("load", (event) => {
         updateTotalItemCount();
-      });
-      window.addEventListener("load", (event) => {
+
         let url = window.location.href;
         let newURL = new URL(url);
         let id = newURL.searchParams.get("id");
@@ -93,9 +92,8 @@
       });
       let addCart = document.getElementById("addToCart");
       addCart.addEventListener("click", (e) => {
-        window.teddy.selectedColor = document.getElementById(
-          "select-color"
-        ).value;
+        window.teddy.selectedColor =
+          document.getElementById("select-color").value;
         addToCart(window.teddy);
       });
     </script>

@@ -85,6 +85,9 @@ function addToCart(teddy) {
   updateTotalItemCount();
   informMessage();
 }
+
+//TotalPrice function
+
 function calcTotalPrice() {
   let totalPrice = 0;
   for (let i = 0; i < localStorage.length; i++) {
@@ -94,6 +97,8 @@ function calcTotalPrice() {
   }
   return totalPrice;
 }
+
+//Total Items counts function
 
 function totalItems() {
   let totalItems = 0;
@@ -108,6 +113,7 @@ function totalItems() {
 function updateTotalItemCount() {
   document.getElementById("total-items").innerHTML = totalItems();
 }
+
 //displayCartItems function
 
 function displayCartItems() {
@@ -201,8 +207,8 @@ function submitForm(e) {
       console.log(data);
       sessionStorage.setItem("orderId", data.orderId);
       sessionStorage.setItem("totalPrice", calcTotalPrice());
-      window.location.href = "confirmation.html";
       localStorage.clear();
+      window.location.href = "confirmation.html";
     });
 }
 
